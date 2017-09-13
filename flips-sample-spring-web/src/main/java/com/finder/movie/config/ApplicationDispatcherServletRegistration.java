@@ -1,4 +1,4 @@
-package com.rental.movie.config;
+package com.finder.movie.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

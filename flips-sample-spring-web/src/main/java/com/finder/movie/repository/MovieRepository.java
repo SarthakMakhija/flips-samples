@@ -1,7 +1,7 @@
-package com.rental.movie.repository;
+package com.finder.movie.repository;
 
-import com.rental.movie.model.Movie;
-import com.rental.movie.model.MovieRating;
+import com.finder.movie.model.Movie;
+import com.finder.movie.model.MovieRating;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import static com.rental.movie.model.Movie.Genre.*;
+import static com.finder.movie.model.Movie.Genre.*;
 
 @Repository
 public class MovieRepository {

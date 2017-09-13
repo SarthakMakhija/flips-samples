@@ -1,10 +1,10 @@
-package com.rental.movie.controller;
+package com.finder.movie.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.rental.movie.config.ApplicationConfig;
-import com.rental.movie.model.Movie;
+import com.finder.movie.model.Movie;
+import com.finder.movie.config.ApplicationConfig;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -67,8 +67,8 @@ public class MovieControllerTest {
     public void shouldGetFeatureNotEnabledOnMoviesByReleaseYear() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/movies/2016"))
                 .andExpect(MockMvcResultMatchers.status().is(501))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.errorMessage", Matchers.equalTo("Feature not enabled, identified by method public java.util.List com.rental.movie.service.MovieService.getMoviesByReleaseYear(int)")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.className",    Matchers.equalTo("com.rental.movie.service.MovieService")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.errorMessage", Matchers.equalTo("Feature not enabled, identified by method public java.util.List com.finder.movie.service.MovieService.getMoviesByReleaseYear(int)")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.className",    Matchers.equalTo("com.finder.movie.service.MovieService")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.featureName",  Matchers.equalTo("getMoviesByReleaseYear")));
     }
 
@@ -76,8 +76,8 @@ public class MovieControllerTest {
     public void shouldGetFeatureNotEnabledOnMoviesByGenre() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/movies/genres/ACTION"))
                 .andExpect(MockMvcResultMatchers.status().is(501))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.errorMessage", Matchers.equalTo("Feature not enabled, identified by method public java.util.List com.rental.movie.service.MovieService.getMoviesByGenre(com.rental.movie.model.Movie$Genre)")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.className",    Matchers.equalTo("com.rental.movie.service.MovieService")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.errorMessage", Matchers.equalTo("Feature not enabled, identified by method public java.util.List com.finder.movie.service.MovieService.getMoviesByGenre(com.finder.movie.model.Movie$Genre)")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.className",    Matchers.equalTo("com.finder.movie.service.MovieService")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.featureName",  Matchers.equalTo("getMoviesByGenre")));
     }
 

@@ -1,8 +1,8 @@
-package com.rental.movie.service;
+package com.finder.movie.service;
 
-import com.rental.movie.model.Movie;
-import com.rental.movie.model.MovieRating;
-import com.rental.movie.repository.MovieRepository;
+import com.finder.movie.model.Movie;
+import com.finder.movie.model.MovieRating;
+import com.finder.movie.repository.MovieRepository;
 import org.flips.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -77,6 +77,6 @@ class MovieBannerService{
 
     @FlipOnEnvironmentProperty(property = "feature.movie.banner")
     public String getBanner(){
-        return "Movie Rental";
+        return "Movie Finder";
     }
 }

@@ -1,8 +1,8 @@
-package com.rental.movie.controller;
+package com.finder.movie.controller;
 
-import com.rental.movie.model.Movie;
-import com.rental.movie.model.MovieRating;
-import com.rental.movie.service.MovieService;
+import com.finder.movie.service.MovieService;
+import com.finder.movie.model.Movie;
+import com.finder.movie.model.MovieRating;
 import org.flips.annotation.FlipBean;
 import org.flips.annotation.FlipOnEnvironmentProperty;
 import org.springframework.beans.factory.annotation.Autowired;

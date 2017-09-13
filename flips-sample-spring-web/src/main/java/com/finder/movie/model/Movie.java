@@ -1,4 +1,4 @@
-package com.rental.movie.model;
+package com.finder.movie.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

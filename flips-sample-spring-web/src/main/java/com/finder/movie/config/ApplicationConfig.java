@@ -1,4 +1,4 @@
-package com.rental.movie.config;
+package com.finder.movie.config;
 
 import org.flips.describe.config.FlipWebContextConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +11,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
-@ComponentScan(basePackages = "com.rental.movie")
+@ComponentScan(basePackages = "com.finder.movie")
 @Import       (FlipWebContextConfiguration.class)
 @EnableWebMvc
 public class ApplicationConfig {

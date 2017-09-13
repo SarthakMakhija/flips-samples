@@ -1,7 +1,7 @@
-package com.rental.movie.controller;
+package com.finder.movie.controller;
 
-import com.rental.movie.model.Movie;
-import com.rental.movie.service.MovieService;
+import com.finder.movie.model.Movie;
+import com.finder.movie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
