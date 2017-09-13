@@ -51,4 +51,12 @@ public class Movie {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
         return formatter.format(releaseDate);
     }
+
+    public Genre getGenre(){
+        return genre;
+    }
+
+    public String getMovieName() {
+        return movieName;
+    }
 }

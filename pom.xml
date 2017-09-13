@@ -6,7 +6,7 @@
   <artifactId>flips-samples</artifactId>
   <version>1.0-SNAPSHOT</version>
   <modules>
-    <module>spring-web</module>
+    <module>flips-sample-spring-web</module>
   </modules>
   <packaging>pom</packaging>
 

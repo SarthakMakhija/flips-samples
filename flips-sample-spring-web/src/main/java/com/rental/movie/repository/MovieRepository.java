@@ -10,6 +10,8 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static com.rental.movie.model.Movie.Genre.*;
 
@@ -18,6 +20,8 @@ public class MovieRepository {
 
     private List<Movie> movies          = new ArrayList<>();
     private List<MovieRating> ratings   = new ArrayList<>();
+
+    private final Lock lock             = new ReentrantLock();
 
     @PostConstruct
     public void initialize(){
@@ -46,5 +50,15 @@ public class MovieRepository {
 
     private Optional<Movie> findByName(String movieName){
         return movies.stream().filter(movie -> movie.matchesName(movieName)).findFirst();
+    }
+
+    public void addMovie(Movie movie) {
+        try{
+            lock.lock();
+            movies.add(movie);
+        }
+        finally {
+            lock.unlock();
+        }
     }
 }
