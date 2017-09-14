@@ -1,1 +1,0 @@
-web: java $JAVA_OPTS -jar flips-sample-spring-web/target/dependency/webapp-runner.jar --port $PORT flips-sample-spring-web/target/*.war
