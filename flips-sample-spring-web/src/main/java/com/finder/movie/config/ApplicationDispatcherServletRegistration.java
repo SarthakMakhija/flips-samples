@@ -1,21 +1,21 @@
 package com.finder.movie.config;
 
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
 
-public class ApplicationDispatcherServletRegistration extends AbstractAnnotationConfigDispatcherServletInitializer {
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
 
-    @Override
-    protected Class<?>[] getRootConfigClasses() {
-        return null;
-    }
+public class ApplicationDispatcherServletRegistration implements WebApplicationInitializer {
 
-    @Override
-    protected Class<?>[] getServletConfigClasses() {
-        return new Class[] { ApplicationConfig.class };
-    }
-
-    @Override
-    protected String[] getServletMappings() {
-        return new String[] { "/" };
+    public void onStartup(ServletContext ctx) throws ServletException {
+        AnnotationConfigWebApplicationContext webCtx = new AnnotationConfigWebApplicationContext();
+        webCtx.register(ApplicationConfig.class);
+        webCtx.setServletContext(ctx);
+        ServletRegistration.Dynamic servlet = ctx.addServlet("dispatcher", new DispatcherServlet(webCtx));
+        servlet.setLoadOnStartup(1);
+        servlet.addMapping("/");
     }
 }
