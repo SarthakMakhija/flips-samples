@@ -31,7 +31,7 @@ public class ArticleController {
         return articleService.getAllArticles();
     }
 
-    @RequestMapping(value = "/articles/{id}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/articles/{id}", method = RequestMethod.GET)
     @FlipOnEnvironmentProperty(property = "feature.article.by.id", expectedValue = "Y")
     public Article getArticleById(@PathVariable int id){
         return articleService.getArticleById(id).orElse(null);

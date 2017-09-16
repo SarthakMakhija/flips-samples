@@ -40,7 +40,7 @@
 			<a href="/articles/1">/articles/{id}</a> Loads an article by Id. <br/>
 			Endpoint <a href="/articles/1">/articles/{id}</a> is annotated with - <br/>
 			<ul>
-				<li>@RequestMapping(value = "/articles/{id}", method = RequestMethod.GET, produces = "application/json") </li>
+				<li>@RequestMapping(value = "/articles/{id}", method = RequestMethod.GET) </li>
 				<li>@FlipOnEnvironmentProperty(property = "feature.article.by.id", expectedValue = "Y") </li>
 			</ul>
 			which will be enabled if <b>feature.article.by.id</b> property is set with value <b>Y</b>.
