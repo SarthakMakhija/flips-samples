@@ -10,8 +10,6 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import static com.finder.movie.model.Movie.Genre.*;
 
@@ -21,15 +19,13 @@ public class MovieRepository {
     private List<Movie> movies          = new ArrayList<>();
     private List<MovieRating> ratings   = new ArrayList<>();
 
-    private final Lock lock             = new ReentrantLock();
-
     @PostConstruct
     public void initialize(){
-        movies.add(new Movie("3-Idiots", LocalDate.of(2009, Month.DECEMBER, 25), COMEDY));
-        movies.add(new Movie("Airlift",  LocalDate.of(2016, Month.JANUARY,  22), DRAMA));
-        movies.add(new Movie("Dangal",   LocalDate.of(2016, Month.DECEMBER, 21), DRAMA));
-        movies.add(new Movie("Sultan",   LocalDate.of(2016, Month.JULY, 06),     ROMANCE));
-        movies.add(new Movie("Inception",LocalDate.of(2010, Month.JULY, 16),     ACTION));
+        movies.add(new Movie(1, "3-Idiots", LocalDate.of(2009, Month.DECEMBER, 25), COMEDY));
+        movies.add(new Movie(2, "Airlift",  LocalDate.of(2016, Month.JANUARY,  22), DRAMA));
+        movies.add(new Movie(3, "Dangal",   LocalDate.of(2016, Month.DECEMBER, 21), DRAMA));
+        movies.add(new Movie(4, "Sultan",   LocalDate.of(2016, Month.JULY, 06),     ROMANCE));
+        movies.add(new Movie(5, "Inception",LocalDate.of(2010, Month.JULY, 16),     ACTION));
 
         ratings.add(new MovieRating(findByName("Inception").get(), 10));
         ratings.add(new MovieRating(findByName("Sultan").get(),    8));
@@ -44,21 +40,7 @@ public class MovieRepository {
         return ratings.stream().filter(movieRating -> movieRating.getMovie().matchesName(movieName)).findFirst().orElse(MovieRating.NONE);
     }
 
-    public List<MovieRating> getAllRatedMovieRatings() {
-        return new ArrayList<>(ratings);
-    }
-
     private Optional<Movie> findByName(String movieName){
         return movies.stream().filter(movie -> movie.matchesName(movieName)).findFirst();
-    }
-
-    public void addMovie(Movie movie) {
-        try{
-            lock.lock();
-            movies.add(movie);
-        }
-        finally {
-            lock.unlock();
-        }
     }
 }

@@ -2,14 +2,16 @@ package com.finder.movie.controller;
 
 import com.finder.movie.model.Movie;
 import com.finder.movie.model.MovieRating;
+import com.finder.movie.model.MovieStatistics;
 import com.finder.movie.service.MovieService;
 import org.flips.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class MovieController {
@@ -26,51 +28,29 @@ public class MovieController {
         return movieService.getAllMovies();
     }
 
-    @RequestMapping(value = "/movies/represent", method = RequestMethod.GET, produces = "application/json")
-    public String getAllMoviesRepresentedAsString(){
-        return movieService.getAllMoviesRepresentedAsString();
+    @RequestMapping(value = "/movies/{id}", method = RequestMethod.GET)
+    @FlipOnEnvironmentProperty(property = "feature.movie.filter.by.id", expectedValue = "Y")
+    public Movie getMovieById(@PathVariable int id){
+        return movieService.getMovieById(id).orElse(null);
     }
 
-    @RequestMapping(value = "/movies/{releaseYear}", method = RequestMethod.GET)
-    @FlipOnEnvironmentProperty(property = "feature.movie.filter.by.release.year.active", expectedValue = "Y")
-    public List<Movie> getMoviesByReleaseYear(@PathVariable int releaseYear){
-        return movieService.getMoviesByReleaseYear(releaseYear);
-    }
-
-    @RequestMapping(value = "/movies/genres/{genre}")
+    @RequestMapping(value = "/movies/{id}/genre")
     @FlipOff
-    public List<Movie> getMoviesByGenre(@PathVariable Movie.Genre genre){
-        return movieService.getMoviesByGenre(genre);
+    public Movie.Genre getMovieGenre(@PathVariable int id){
+        return movieService.getMovieGenre(id).orElse(null);
     }
 
-    @RequestMapping(value = "/movies/rated/ratings", method = RequestMethod.GET)
+    @RequestMapping(value = "/movies/{id}/rating", method = RequestMethod.GET)
     @FlipOnSpringExpression(expression = "@environment.getProperty('feature.movie.rating') == 'Y'")
     @FlipOnDateTime        (cutoffDateTimeProperty = "feature.movie.rating.enabled.on.after")
-    public List<MovieRating> getAllRatedMovieRatings(){
-        return movieService.getAllRatedMovieRatings();
+    public MovieRating getAllRatedMovieRatings(@PathVariable int id){
+        return movieService.getMovieRating(id).orElse(null);
     }
 
-    @RequestMapping(value = "/movies/{movieName}/rating", method = RequestMethod.GET)
-    @FlipOnEnvironmentProperty(property = "feature.movie.rating.by.name", expectedValue = "Y")
-    public MovieRating getMovieRatingByMovieName(@PathVariable String movieName){
-        return movieService.getMovieRatingByMovieName(movieName);
-    }
-
-    @FlipBean(with = MovieStatsController.class)
+    @FlipBean(with = MovieStatisticsController.class)
     @FlipOnEnvironmentProperty(property = "feature.movie.stat.flip.alternate", expectedValue = "Y")
-    @RequestMapping(value = "/movies/stats/genre", method = RequestMethod.GET)
-    public Map<Movie.Genre, Long> getMovieStatsByGenre(){
-        return new HashMap<>();
-    }
-
-    @RequestMapping(value = "/movies/banner", method = RequestMethod.GET)
-    public String getBanner(){
-        return movieService.getBanner();
-    }
-
-    @RequestMapping(value = "/movies", method = RequestMethod.PUT)
-    @FlipOnProfiles(activeProfiles = "dev")
-    public void addMovie(@RequestBody Movie movie){
-        movieService.addMovie(movie);
+    @RequestMapping(value = "/movies/statistics", method = RequestMethod.GET)
+    public MovieStatistics getMovieStatistics(){
+        return MovieStatistics.NONE;
     }
 }
