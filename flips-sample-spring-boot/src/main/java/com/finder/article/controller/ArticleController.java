@@ -5,6 +5,7 @@ import com.finder.article.model.ArticleStatistics;
 import com.finder.article.service.ArticleService;
 import org.flips.annotation.FlipBean;
 import org.flips.annotation.FlipOnEnvironmentProperty;
+import org.flips.annotation.FlipOnProfiles;
 import org.flips.annotation.FlipOnSpringExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/articles", method = RequestMethod.GET)
+    @FlipOnProfiles(activeProfiles = "dev")
     public List<Article> getAllArticles(){
         return articleService.getAllArticles();
     }

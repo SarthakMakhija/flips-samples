@@ -11,6 +11,6 @@ public class CustomControllerAdvice {
 
     @ExceptionHandler(FeatureNotEnabledException.class)
     public ResponseEntity<?> handleFeatureNotEnabledException(FeatureNotEnabledException e){
-        return new ResponseEntity<>("DISABLED", HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<>("Custom Disabled Message " + e.getFeature().getFeatureName(), HttpStatus.NOT_IMPLEMENTED);
     }
 }
