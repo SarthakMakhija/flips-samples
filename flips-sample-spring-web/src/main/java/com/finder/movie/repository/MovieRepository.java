@@ -40,6 +40,10 @@ public class MovieRepository {
         return ratings.stream().filter(movieRating -> movieRating.getMovie().matchesName(movieName)).findFirst().orElse(MovieRating.NONE);
     }
 
+    public List<MovieRating> getMovieRatings(){
+        return new ArrayList<>(ratings);
+    }
+
     private Optional<Movie> findByName(String movieName){
         return movies.stream().filter(movie -> movie.matchesName(movieName)).findFirst();
     }

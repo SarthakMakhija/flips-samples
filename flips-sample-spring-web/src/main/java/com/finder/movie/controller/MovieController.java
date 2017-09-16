@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static java.time.DayOfWeek.*;
+
 @RestController
 public class MovieController {
 
@@ -52,5 +54,11 @@ public class MovieController {
     @RequestMapping(value = "/movies/statistics", method = RequestMethod.GET)
     public MovieStatistics getMovieStatistics(){
         return MovieStatistics.NONE;
+    }
+
+    @RequestMapping(value = "/ratings", method = RequestMethod.GET)
+    @FlipOnDaysOfWeek(daysOfWeek = {MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY})
+    public List<MovieRating> getMovieRatings(){
+        return movieService.getMovieRatings();
     }
 }

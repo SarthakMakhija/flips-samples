@@ -47,4 +47,8 @@ public class MovieService {
         Map<Integer, Long> groupByReleaseYear = getAllMovies().stream().collect(Collectors.groupingBy(Movie::releaseYear, Collectors.counting()));
         return new MovieStatistics(groupByGenre, groupByReleaseYear);
     }
+
+    public List<MovieRating> getMovieRatings() {
+        return movieRepository.getMovieRatings();
+    }
 }

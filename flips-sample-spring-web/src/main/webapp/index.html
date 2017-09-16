@@ -116,5 +116,20 @@
 	</div>
 </div>
 
+<div class="bs-example">
+	<div class="panel panel-default">
+		<div class="panel-heading">Loads all movie ratings</div>
+		<div class="panel-body">
+			<a href="/ratings">/ratings</a> Loads all movie ratings<br/>
+			Endpoint <a href="/ratings">/ratings</a> is annotated with - <br/>
+			<ul>
+				<li>@RequestMapping(value = "/ratings", method = RequestMethod.GET)</li>
+				<li>@FlipOnDaysOfWeek(daysOfWeek = {MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY})</li>
+			</ul>
+			which will be enabled on all days <b>other than SATURDAY & SUNDAY</b>
+		</div>
+	</div>
+</div>
+
 </body>
 </html>
