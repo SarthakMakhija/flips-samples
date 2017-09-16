@@ -1,25 +1,120 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Flips Sample (Spring Web)</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		.bs-example{
+			margin: 20px;
+		}
+	</style>
+</head>
 <body>
-	Explore Various Endpoints
-	<ul>
-		<li>
-			<a href="/movies">Get All Movies</a>
-		</li>
-		<li>
-			<a href="/movies/1">Get Movie By Id</a>
-		</li>
-		<li>
-			<a href="/movies/1/genre">Get Movie Genre</a>
-		</li>
-		<li>
-			<a href="/movies/1/rating">Get Movie Rating</a>
-		</li>
-		<li>
-			<a href="/movies/statistics">Get Movie Statistics</a>
-		</li>
-		<li>
-			<a href="/banner">Get Application Banner</a>
-		</li>
-	</ul>
+<div class="alert alert-info" role="alert">
+	<strong>Flips Sample (Spring Web)</strong> Explore endpoints to understand the behavior of <b>@Flip*</b> annotations.
+</div>
+
+<div class="bs-example">
+	<div class="panel panel-default">
+		<div class="panel-heading">Loads All Movies</div>
+		<div class="panel-body">
+			Endpoint <a href="/movies">/movies</a> is annotated with - <br/>
+			<ul>
+				<li>@RequestMapping(value = "/movies", method = RequestMethod.GET)</li>
+			</ul>
+			which is enabled by default.
+		</div>
+	</div>
+</div>
+
+<div class="bs-example">
+	<div class="panel panel-default">
+		<div class="panel-heading">Loads a movie by Id</div>
+		<div class="panel-body">
+			<a href="/movies/1">/movies/{id}</a> Loads a movie by Id<br/>
+			Endpoint <a href="/movies/1">/movies/{id}</a> is annotated with - <br/>
+			<ul>
+				<li>@RequestMapping(value = "/movies/{id}", method = RequestMethod.GET)</li>
+				<li>@FlipOnEnvironmentProperty(property = "feature.movie.filter.by.id", expectedValue = "Y")</li>
+			</ul>
+			which will be enabled if <b>feature.movie.filter.by.id</b> property is set with value <b>Y</b>.
+		</div>
+	</div>
+</div>
+
+<div class="bs-example">
+	<div class="panel panel-default">
+		<div class="panel-heading">Loads a movie genre</div>
+		<div class="panel-body">
+			<a href="/movies/1/genre">/movies/{id}/genre</a> Loads a movie genre<br/>
+			Endpoint <a href="/movies/1/genre">/movies/{id}/genre</a> is annotated with - <br/>
+			<ul>
+				<li>@RequestMapping(value = "/movies/{id}/genre")</li>
+				<li>@FlipOff</li>
+			</ul>
+			which is always flipped off (or disabled).
+		</div>
+	</div>
+</div>
+
+<div class="bs-example">
+	<div class="panel panel-default">
+		<div class="panel-heading">Loads a movie rating</div>
+		<div class="panel-body">
+			<a href="/movies/5/rating">/movies/{id}/rating</a> Loads a movie rating<br/>
+			Endpoint <a href="/movies/5/rating">/movies/{id}/rating</a> is annotated with - <br/>
+			<ul>
+				<li>@RequestMapping(value = "/movies/{id}/rating", method = RequestMethod.GET)</li>
+				<li>@FlipOnSpringExpression(expression = "@environment.getProperty('feature.movie.rating') == 'Y'")</li>
+				<li>@FlipOnDateTime        (cutoffDateTimeProperty = "feature.movie.rating.enabled.on.after")</li>
+			</ul>
+			which will be enabled if (<i>BOTH</i> conditions should evaluate to <i>TRUE</i>):
+			<ul>
+				<li><b>feature.movie.rating</b> property is set with value <b>Y</b>. <br></li>
+				<li><b>current date time</b> is <i>greater than or equal to</i> date time mentioned in <b>feature.movie.rating.enabled.on.after</b> property
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="bs-example">
+	<div class="panel panel-default">
+		<div class="panel-heading">Loads the movie statistics</div>
+		<div class="panel-body">
+			<a href="/movies/statistics">/movies/statistics</a> Loads the movie statistics<br/>
+			Endpoint <a href="/movies/statistics">/movies/statistics</a> is annotated with - <br/>
+			<ul>
+				<li>@FlipBean(with = MovieStatisticsController.class)</li>
+				<li>@FlipOnEnvironmentProperty(property = "feature.movie.stat.flip.alternate", expectedValue = "Y")</li>
+				<li>@RequestMapping(value = "/movies/statistics", method = RequestMethod.GET)</li>
+			</ul>
+			which will flip the implementation with <b>MovieStatisticsController</b> if <b>feature.movie.stat.flip.alternate</b> property is set with value <b>Y</b>.
+		</div>
+	</div>
+</div>
+
+<div class="bs-example">
+	<div class="panel panel-default">
+		<div class="panel-heading">Loads the banner</div>
+		<div class="panel-body">
+			<a href="/banner">/banner</a> Loads the banner<br/>
+			Endpoint <a href="/banner">/banner</a> is annotated with - <br/>
+			<ul>
+				<li>@RequestMapping(value = "/banner", method = RequestMethod.GET)</li>
+			</ul>
+			which internally invokes a service to get some banner, which is annotated with - <br/>
+			<ul>
+				<li>@FlipOnEnvironmentProperty(property = "feature.application.banner")</li>
+			</ul>
+			which will be enabled if <b>feature.application.banner</b> property is set with value <b>true</b>.
+		</div>
+	</div>
+</div>
+
 </body>
 </html>
