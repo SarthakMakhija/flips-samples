@@ -1,42 +1,34 @@
 package com.finder.article.service;
 
 import com.finder.article.model.Article;
+import com.finder.article.model.ArticleStatistics;
 import com.finder.article.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 public class ArticleService {
 
     private ArticleRepository articleRepository;
-    private String            separator;
 
     @Autowired
-    public ArticleService(ArticleRepository articleRepository, @Value("${article.name.list.separator}") String separator) {
+    public ArticleService(ArticleRepository articleRepository) {
         this.articleRepository  = articleRepository;
-        this.separator          = separator;
     }
 
     public List<Article> getAllArticles() {
         return articleRepository.getAllArticles();
     }
 
-    public String getAllArticlesRepresentedAsString() {
-        return getAllArticles().stream().map(Article::getArticleTitle).sorted().collect(Collectors.joining(separator));
+    public Optional<Article> getArticleById(int id) {
+        return getAllArticles().stream().filter(article -> article.equalsId(id)).findFirst();
     }
 
-    public List<Article> getArticleByPublishYear(int publishYear) {
-        return getAllArticles().stream().filter(movie -> movie.isPublishedInYear(publishYear)).collect(toList());
-    }
-
-    public Map<Integer, Long> getArticleStatsByYear() {
-        return getAllArticles().stream().collect(Collectors.groupingBy(Article::getPublishYear, Collectors.counting()));
+    public ArticleStatistics getArticleStatisticsByYear() {
+        return new ArticleStatistics(getAllArticles().stream().collect(Collectors.groupingBy(Article::getPublishYear, Collectors.counting())));
     }
 }

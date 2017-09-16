@@ -15,10 +15,13 @@ public class Article {
     @JsonIgnore
     private final LocalDate publishDate;
 
-    public Article(String articleTitle, LocalDate publishDate) {
+    private int id;
+
+    public Article(int id, String articleTitle, LocalDate publishDate) {
         Objects.requireNonNull(articleTitle,  "Article Title can not be null");
         Objects.requireNonNull(publishDate,   "Publish Date can not be null");
 
+        this.id = id;
         this.articleTitle = articleTitle;
         this.publishDate = publishDate;
     }
@@ -29,15 +32,11 @@ public class Article {
         return formatter.format(publishDate);
     }
 
-    public  String getArticleTitle() {
-        return articleTitle;
-    }
-
-    public boolean isPublishedInYear(int publishYear) {
-        return publishDate.getYear() == publishYear;
-    }
-
     public int getPublishYear(){
         return publishDate.getYear();
+    }
+
+    public boolean equalsId(int id){
+        return this.id == id;
     }
 }

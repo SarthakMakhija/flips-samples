@@ -13,8 +13,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(properties = {"feature.article.represent.as.separated=Y",
-                              "feature.article.stat.flip.alternate=Y"
+@SpringBootTest(properties = {"feature.article.by.id=Y",
+                              "feature.movie.statistics=Y"
                              })
 @AutoConfigureMockMvc
 public class ArticleControllerTest {
@@ -30,24 +30,19 @@ public class ArticleControllerTest {
     }
 
     @Test
-    public void shouldGetAllArticlesRepresentedAsString() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/articles/represent"))
+    public void shouldGetArticleById() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/articles/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string("AI - a boon or destruction,Google's Digital Culture,Self Driving Cars"));
-    }
-
-    @Test
-    public void shouldGetAllArticlesByReleaseYear() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/articles/2016"))
-                .andExpect(MockMvcResultMatchers.status().is(501))
-                .andExpect(MockMvcResultMatchers.content().string("DISABLED"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.articleTitle", Matchers.equalTo("Google's Digital Culture")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.publishDate", Matchers.equalTo("25 Dec 2009")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.publishYear", Matchers.equalTo(2009)));
     }
 
     @Test
     public void getArticleStatsByYear() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/articles/stats/year"))
+        mvc.perform(MockMvcRequestBuilders.get("/articles/statistics"))
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.2016", Matchers.equalTo(2)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.2009", Matchers.equalTo(1)));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.groupedByYear.2016", Matchers.equalTo(2)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.groupedByYear.2009", Matchers.equalTo(1)));
     }
 }
