@@ -5,13 +5,14 @@
         <groupId>com.finder.movie</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>flips-sample-spring-web</artifactId>
     <packaging>war</packaging>
 
     <name>flips-sample-spring-web</name>
-    <url>http://maven.apache.org</url>
+    <description>Sample project built on top of Java 8 and Spring Web MVC demonstrating the use of Flips library</description>
+    <url>https://github.com/SarthakMakhija/flips-samples</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,7 +20,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.flips</groupId>
+            <groupId>com.github.flips</groupId>
             <artifactId>flips-web</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
