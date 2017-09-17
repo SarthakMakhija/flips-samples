@@ -1,5 +1,5 @@
 # flips-samples
-Sample **Spring Web &amp; Spring Boot** projects demonstrating the use of *Flips library*.  
+Sample **Spring Web &amp; Spring Boot** projects demonstrating the use of [Flips](https://github.com/Feature-Flip/flips) library.  
 
 #### Versions of different libraries -
 1. **flips-sample-spring-web**  uses Java 8, Spring version 4.2.3.RELEASE and Jackson version 2.7.5
