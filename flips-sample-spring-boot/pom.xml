@@ -8,10 +8,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>flips-samples-spring-boot</artifactId>
+    <artifactId>flips-sample-spring-boot</artifactId>
     <packaging>jar</packaging>
 
-    <name>flips-samples-spring-boot</name>
+    <name>flips-sample-spring-boot</name>
     <description>Sample project built on top of Java 8 and Spring Boot demonstrating the use of Flips library</description>
     <url>https://github.com/SarthakMakhija/flips-samples</url>
 
