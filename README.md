@@ -7,14 +7,14 @@ Sample **Spring Web &amp; Spring Boot** projects demonstrating the use of *Flips
 
 #### Running **flips-sample-spring-web** -
 1. mvn clean package
-2. java -jar flips-sample-spring-web/target/dependency/webapp-runner.jar flips-sample-spring-web/target/flips-sample-spring-web-1.0-SNAPSHOT.war
+2. java -jar flips-sample-spring-web/target/dependency/webapp-runner.jar flips-sample-spring-web/target/flips-sample-spring-web.war
 3. Application should be up and running on 8080. URL - http://localhost:8080/index.html
 
 Step 2 assumes that you are in the root (flips-samples) directory.
 
 #### Running **flips-sample-spring-boot** -
 1. mvn clean package
-2. mvn spring-boot:run OR, java -Dspring.profiles.active=dev  -jar target/flips-sample-spring-boot-1.4.3.RELEASE.jar
+2. mvn spring-boot:run OR, java -Dspring.profiles.active=dev  -jar target/flips-sample-spring-boot.jar
 3. Application should be up and running on 8080. URL - http://localhost:8080/index.html
 
 Step 2 assumes that you are in the flips-sample-spring-boot directory.
