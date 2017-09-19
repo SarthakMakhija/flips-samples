@@ -1,1 +1,1 @@
-web: java -jar $RUNNER $PORT_PARAM $PORT $EXECUTABLE
+web: java -jar $RUNNER $PORT_PARAM=$PORT $EXECUTABLE
