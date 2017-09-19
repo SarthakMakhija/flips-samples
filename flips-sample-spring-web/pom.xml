@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.github.feature-flip</groupId>
             <artifactId>flips-web</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
