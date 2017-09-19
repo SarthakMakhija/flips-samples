@@ -1,1 +1,1 @@
-web: java -jar -Dserver.port=$PORT -Dspring.profiles.active=dev $JAR_FILE
+web: $CMD
