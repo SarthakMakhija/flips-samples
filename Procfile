@@ -1,1 +1,1 @@
-web: $CMD
+web: java -jar $RUNNER $PORT_PARAM $PORT $EXECUTABLE
