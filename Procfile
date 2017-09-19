@@ -1,1 +1,0 @@
-web: java -jar $RUNNER $P_CONFIG_PARAM $PORT $EXECUTABLE
