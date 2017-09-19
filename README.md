@@ -1,4 +1,7 @@
 # flips-samples
+
+[![Build Status](https://travis-ci.org/SarthakMakhija/flips-samples.svg?branch=master)](https://travis-ci.org/SarthakMakhija/flips-samples)
+
 Sample **Spring Web &amp; Spring Boot** projects demonstrating the use of [Flips](https://github.com/Feature-Flip/flips) library.  
 
 #### Versions of different libraries -
