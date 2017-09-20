@@ -1,8 +1,6 @@
 package com.finder.movie.controller;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.finder.movie.config.ApplicationConfig;
 import com.finder.movie.model.Movie;
 import org.hamcrest.Matchers;
@@ -34,11 +32,9 @@ public class MovieControllerTest {
     private WebApplicationContext webApplicationContext;
 
     private MockMvc      mvc;
-    private ObjectWriter writer;
 
     @Before
     public void setUp(){
-        writer = new ObjectMapper().writer();
         mvc    = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
