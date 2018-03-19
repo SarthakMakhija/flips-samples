@@ -37,7 +37,7 @@ Step 2 assumes that you are in the flips-sample-spring-boot2 directory.
 3. Both of these projects provide a simple **index.html** which serves as a simple documentation for the usage of various   @Flip annotations.
 
 #### Screenshots - 
-![Spring Web](https://github.com/SarthakMakhija/flips-samples/blob/master/flips-sample-spring-web/screenshot_running_app.png)
+![Spring Web](https://github.com/SarthakMakhija/flips-samples/blob/master/flips-sample-spring-web/screenshot_running_app1.png)
 
 ![Spring Boot](https://github.com/SarthakMakhija/flips-samples/blob/master/flips-sample-spring-boot/screenshot_running_app.png)
 
