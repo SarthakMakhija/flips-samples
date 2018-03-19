@@ -8,6 +8,7 @@
   <modules>
     <module>flips-sample-spring-web</module>
     <module>flips-sample-spring-boot</module>
+    <module>flips-sample-spring-boot2</module>
   </modules>
   <packaging>pom</packaging>
 

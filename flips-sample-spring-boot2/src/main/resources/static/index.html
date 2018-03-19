@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Flips Sample (Spring Boot 2)</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		.bs-example{
+			margin: 20px;
+		}
+	</style>
+</head>
+<body>
+<div class="alert alert-info" role="alert">
+	<strong>Flips Sample (Spring Boot 2)</strong> Explore endpoints to understand the behavior of <b>@Flip*</b> annotations.
+</div>
+
+<div class="bs-example">
+	<div class="panel panel-default">
+		<div class="panel-heading">Loads All Articles</div>
+		<div class="panel-body">
+			Endpoint <a href="/articles">/articles</a> is annotated with - <br/>
+			<ul>
+				<li>@RequestMapping(value = "/articles", method = RequestMethod.GET)</li>
+				<li>@FlipOnProfiles(activeProfiles = "dev") </li>
+			</ul>
+			which will be enabled in <b>dev profile</b>.
+		</div>
+	</div>
+</div>
+
+<div class="bs-example">
+	<div class="panel panel-default">
+		<div class="panel-heading">Loads an article by Id</div>
+		<div class="panel-body">
+			<a href="/articles/1">/articles/{id}</a> Loads an article by Id. <br/>
+			Endpoint <a href="/articles/1">/articles/{id}</a> is annotated with - <br/>
+			<ul>
+				<li>@RequestMapping(value = "/articles/{id}", method = RequestMethod.GET) </li>
+				<li>@FlipOnEnvironmentProperty(property = "feature.article.by.id", expectedValue = "Y") </li>
+			</ul>
+			which will be enabled if <b>feature.article.by.id</b> property is set with value <b>Y</b>.
+		</div>
+	</div>
+</div>
+
+<div class="bs-example">
+	<div class="panel panel-default">
+		<div class="panel-heading">Loads the article statistics</div>
+		<div class="panel-body">
+			Endpoint <a href="/articles/statistics">/articles/statistics</a> is annotated with - <br/>
+			<ul>
+				<li>@FlipBean(with = ArticleStatisticsController.class) </li>
+				<li>@FlipOnSpringExpression(expression = "@environment.getProperty('feature.movie.statistics') == 'Y'") </li>
+				<li>@RequestMapping(value = "/articles/statistics", method = RequestMethod.GET) </li>
+			</ul>
+			which will flip the implementation with <b>ArticleStatisticsController</b> if <b>feature.movie.statistics</b> property is set with value <b>Y</b>.
+		</div>
+	</div>
+</div>
+
+<div class="bs-example">
+	<div class="panel panel-default">
+		<div class="panel-heading">Describes all Features</div>
+		<div class="panel-body">
+			Endpoint <a href="/describe/features">/describe/features</a> will load the description of features along with the status
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
